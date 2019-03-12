@@ -1,1 +1,53 @@
-# Hello World
+
+import { Appear } from 'mdx-deck';
+import { Invert, Split, FullScreenCode } from 'mdx-deck/layouts'
+export { code as theme } from 'mdx-deck/themes'
+
+# Refactors for Good JS
+
+Built with mdx-deck:  https://github.com/jxnblk/mdx-deck/blob/master/docs/components.md
+
+---
+
+# Decomposing Conditionals
+
+---
+
+export default Split;
+
+```jsx
+if (date.before(SUMMER_START) || date.after(SUMMER_END)) {
+  charge = quantity * winterRate + winterServiceCharge;
+}
+else {
+  charge = quantity * summerRate;
+}
+```
+
+<Appear>
+  <div>
+
+```jsx
+if (isSummer(date)) {
+  charge = summerCharge(quantity);
+}
+else {
+  charge = winterCharge(quantity);
+}
+```
+
+  </div>
+</Appear>
+---
+
+export default FullScreenCode;
+
+```jsx
+
+<div>
+  <h1>Hello World</h1>
+</div>
+
+```
+
+
