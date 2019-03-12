@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "mdx-deck": "^1.10.2"
+  },
+  "scripts": {
+    "start": "mdx-deck deck.mdx",
+    "build": "mdx-deck build deck.mdx"
+  }
+}
