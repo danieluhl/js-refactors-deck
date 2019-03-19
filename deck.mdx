@@ -163,6 +163,46 @@ function setWidth(arg) {
 
 ---
 
+# React Components are Functions
+
+---
+
+export default Split;
+
+```jsx
+function Dimension(props) {
+  returm (
+    <div>
+      {if(props.height) {
+        <h1>This is the height stuff</h1>
+      }}
+      {if(props.width) {
+        <h1>This is the width stuff</h1>
+      }}
+    </div>
+  );
+}
+```
+
+<Appear>
+  <div>
+
+```jsx
+function Parent(props) {
+  return (
+    <div>
+      {props.showHeight && <Height />}
+      {props.showWidth && <Width />}
+    </div>
+  );
+}
+```
+
+  </div>
+</Appear>
+
+---
+
 # Replace Error Code with Exception
 
 ---
