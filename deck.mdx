@@ -1,5 +1,5 @@
 
-import { Appear } from 'mdx-deck';
+import { Appear, Notes } from 'mdx-deck';
 import { Invert, Split, FullScreenCode } from 'mdx-deck/layouts'
 export { code as theme } from 'mdx-deck/themes'
 
@@ -38,16 +38,204 @@ else {
 
   </div>
 </Appear>
+
+<Notes>We can only keep so many things in mind at once</Notes>
+
 ---
 
-export default FullScreenCode;
+# Replace Nested Conditional with Guard Clauses
+
+---
+
+
+export default Split;
 
 ```jsx
-
-<div>
-  <h1>Hello World</h1>
-</div>
-
+function getPayAmount() {
+  let result;
+  if (isDead){
+    result = deadAmount();
+  }
+  else {
+    if (isSeparated){
+      result = separatedAmount();
+    }
+    else {
+      if (isRetired){
+        result = retiredAmount();
+      }
+      else{
+        result = normalPayAmount();
+      }
+    }
+  }
+  return result;
+}
 ```
 
+
+<Appear>
+  <div>
+
+```jsx
+function getPayAmount() {
+  if (isDead){
+    return deadAmount();
+  }
+  if (isSeparated){
+    return separatedAmount();
+  }
+  if (isRetired){
+    return retiredAmount();
+  }
+  return normalPayAmount();
+}
+```
+
+
+  </div>
+</Appear>
+
+<Notes>Nested conditionals can quickly get complicated and hard to read</Notes>
+
+---
+
+# Parameterize Method
+
+---
+
+export default Split;
+
+```jsx
+const raiseTenPercent = () => {};
+const raiseFivePercent = () => {};
+```
+
+<Appear>
+  <div>
+
+```jsx
+const raisePercent = (percent) => {};
+```
+
+  </div>
+</Appear>
+
+<Notes>When all but one or two parts of functions are duplicate</Notes>
+
+---
+
+# Replace Parameter with Explicit Methods
+
+---
+
+export default Split;
+
+```jsx
+function setValue(name, value) {
+  if (name.equals("height")) {
+    height = value;
+    return;
+  }
+  if (name.equals("width")) {
+    width = value;
+    return;
+  }
+}
+```
+
+<Appear>
+  <div>
+
+```jsx
+function setHeight(arg) {
+  height = arg;
+}
+function setWidth(arg) {
+  width = arg;
+}
+```
+
+  </div>
+</Appear>
+
+<Notes>When one function is doing too many things</Notes>
+
+---
+
+# Replace Error Code with Exception
+
+---
+
+export default Split;
+
+```jsx
+function withdraw(amount) {
+  if (amount > _balance) {
+    return -1;
+  }
+  else {
+    balance -= amount;
+    return 0;
+  }
+}
+```
+
+<Appear>
+  <div>
+
+```jsx
+withdraw(amount) {
+  if (amount > _balance) {
+    throw new Error();
+  }
+  balance -= amount;
+}
+```
+
+  </div>
+</Appear>
+
+<Notes>"throwing erros is one of the most under utilized featurs of javascript" - Arty Buldauskas</Notes>
+
+---
+
+# Replace Exception with Test
+
+---
+
+export default Split;
+
+```jsx
+function getValueForPeriod(periodNumber) {
+  try {
+    return values[periodNumber];
+  } catch (ArrayIndexOutOfBoundsException e) {
+    return 0;
+  }
+}
+```
+
+<Appear>
+  <div>
+
+```jsx
+function getValueForPeriod(periodNumber) {
+  if (periodNumber >= values.length) {
+    return 0;
+  }
+  return values[periodNumber];
+}
+```
+
+  </div>
+</Appear>
+
+<Notes>With good tests you can ensure error states will never be reached</Notes>
+
+---
+
+export default Invert;
+
+# Thanks for coming!
 
