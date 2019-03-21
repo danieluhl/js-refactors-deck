@@ -4,9 +4,7 @@ import { Invert, Split, FullScreenCode, Horizontal } from 'mdx-deck/layouts'
 import {VerticalSplit, HorizontalSplit} from './CustomLayouts'
 export { code as theme } from 'mdx-deck/themes'
 
-# Refactors for Good JS
-
-Built with mdx-deck:  https://github.com/jxnblk/mdx-deck/blob/master/docs/components.md
+# Some Number of Refactors for Good JS
 
 ---
 
@@ -54,7 +52,7 @@ export default HorizontalSplit;
 ## Replace Nested Conditional with Guard Clauses
 
 <Appear>
-  <div style={{marginRight: '6px'}}>
+  <div style={{marginRight: '20px'}}>
 
 ### Before
 
@@ -109,39 +107,9 @@ function getPayAmount() {
 
 ---
 
-export default VerticalSplit;
-
-# Parameterize Method
-
-<Appear>
-  <div>
-
-### Before
-
-```jsx
-const raiseTenPercent = () => {};
-const raiseFivePercent = () => {};
-```
-
-  </div>
-  <div>
-
-### After
-
-```jsx
-const raisePercent = (percent) => {};
-```
-
-  </div>
-</Appear>
-
-<Notes>When all but one or two parts of functions are duplicate</Notes>
-
----
-
 export default HorizontalSplit;
 
-# Replace Parameter with Explicit Methods
+# Use Default Parameters
 
 <Appear>
   <div style={{marginRight: '20px'}}>
@@ -149,16 +117,11 @@ export default HorizontalSplit;
 ### Before
 
 ```jsx
-function setValue(name, value) {
-  if (name.equals("height")) {
-    height = value;
-    return;
-  }
-  if (name.equals("width")) {
-    width = value;
-    return;
-  }
-}
+const raiseTenPercent = (base, percent) => {};
+
+const base = base || 0;
+const percent = percen || 0;
+raiseTenPercent(base, percent)
 ```
 
   </div>
@@ -167,12 +130,41 @@ function setValue(name, value) {
 ### After
 
 ```jsx
-function setHeight(arg) {
-  height = arg;
-}
-function setWidth(arg) {
-  width = arg;
-}
+const raiseTenPercent = (base = 0, percent = 0) => {}
+```
+
+  </div>
+</Appear>
+
+<Notes>Note, does not work for undefined</Notes>
+
+---
+
+export default HorizontalSplit;
+
+# Replace 3+ parameters with object
+
+<Appear>
+  <div style={{marginRight: '20px'}}>
+
+### Before
+
+```jsx
+const calculateMortgage =
+  (value, down, loan, interest, term = 0, tax, PMI) => {}
+calculateMortgage(value, down, loan, interest, tax, PMI)
+```
+
+  </div>
+  <div>
+
+### After
+
+```jsx
+const calculateMortgage =
+  ({value, down, loan, interest, term = 0, tax, PMI}) => {}
+// no change to data structure
+calculateMortgage({value, down, loan, interest, tax, PMI})
 ```
 
   </div>
@@ -184,55 +176,10 @@ function setWidth(arg) {
 
 export default HorizontalSplit;
 
-## React Components are Functions
-
-<Appear>
-  <div style={{marginRight: '20px'}}>
-
-### Before
-
-```jsx
-function Dimension(props) {
-  returm (
-    <div>
-      {if(props.height) {
-        <h1>This is the height stuff</h1>
-      }}
-      {if(props.width) {
-        <h1>This is the width stuff</h1>
-      }}
-    </div>
-  );
-}
-```
-
-  </div>
-  <div>
-
-### After
-
-```jsx
-function Parent(props) {
-  return (
-    <div>
-      {props.showHeight && <Height />}
-      {props.showWidth && <Width />}
-    </div>
-  );
-}
-```
-
-  </div>
-</Appear>
-
----
-
-export default VerticalSplit;
-
 # Replace Error Code with Exception
 
 <Appear>
-  <div>
+  <div style={{marginRight: '20px'}}>
 
 ### Before
 
@@ -269,12 +216,12 @@ withdraw(amount) {
 
 ---
 
-export default VerticalSplit;
+export default HorizontalSplit;
 
 # Replace Exception with Test
 
 <Appear>
-  <div>
+  <div style={{marginRight: '20px'}}>
 
 ### Before
 
@@ -282,7 +229,7 @@ export default VerticalSplit;
 function getValueForPeriod(periodNumber) {
   try {
     return values[periodNumber];
-  } catch (ArrayIndexOutOfBoundsException e) {
+  } catch (e) {
     return 0;
   }
 }
@@ -315,7 +262,10 @@ export default Invert;
 
 * Decomposing Conditionals
 * Replace Nested Conditional with Guard Clauses
-* Parameterize Method
-* Replace Parameter with Explicit Methods
+* Use Default Parameters
+* Replace 3+ parameters with object
 * Replace Error Code with Exception
 * Replace Exception with Test
+
+Built with mdx-deck & Netlify:  https://github.com/jxnblk/mdx-deck/blob/master/docs/components.md
+Find this here:
