@@ -1,6 +1,7 @@
 
 import { Appear, Notes } from 'mdx-deck';
-import { Invert, Split, FullScreenCode } from 'mdx-deck/layouts'
+import { Invert, Split, FullScreenCode, Horizontal } from 'mdx-deck/layouts'
+import {VerticalSplit, HorizontalSplit} from './CustomLayouts'
 export { code as theme } from 'mdx-deck/themes'
 
 # Refactors for Good JS
@@ -9,11 +10,14 @@ Built with mdx-deck:  https://github.com/jxnblk/mdx-deck/blob/master/docs/compon
 
 ---
 
+export default VerticalSplit;
+
 # Decomposing Conditionals
 
----
+<Appear>
+  <div>
 
-export default Split;
+### Before
 
 ```jsx
 if (date.before(SUMMER_START) || date.after(SUMMER_END)) {
@@ -24,8 +28,10 @@ else {
 }
 ```
 
-<Appear>
+  </div>
   <div>
+
+### After
 
 ```jsx
 if (isSummer(date)) {
@@ -43,12 +49,14 @@ else {
 
 ---
 
-# Replace Nested Conditional with Guard Clauses
+export default HorizontalSplit;
 
----
+## Replace Nested Conditional with Guard Clauses
 
+<Appear>
+  <div style={{marginRight: '6px'}}>
 
-export default Split;
+### Before
 
 ```jsx
 function getPayAmount() {
@@ -73,9 +81,10 @@ function getPayAmount() {
 }
 ```
 
-
-<Appear>
+  </div>
   <div>
+
+### After
 
 ```jsx
 function getPayAmount() {
@@ -100,19 +109,24 @@ function getPayAmount() {
 
 ---
 
+export default VerticalSplit;
+
 # Parameterize Method
 
----
+<Appear>
+  <div>
 
-export default Split;
+### Before
 
 ```jsx
 const raiseTenPercent = () => {};
 const raiseFivePercent = () => {};
 ```
 
-<Appear>
+  </div>
   <div>
+
+### After
 
 ```jsx
 const raisePercent = (percent) => {};
@@ -125,11 +139,14 @@ const raisePercent = (percent) => {};
 
 ---
 
+export default HorizontalSplit;
+
 # Replace Parameter with Explicit Methods
 
----
+<Appear>
+  <div style={{marginRight: '20px'}}>
 
-export default Split;
+### Before
 
 ```jsx
 function setValue(name, value) {
@@ -144,8 +161,10 @@ function setValue(name, value) {
 }
 ```
 
-<Appear>
+  </div>
   <div>
+
+### After
 
 ```jsx
 function setHeight(arg) {
@@ -163,11 +182,14 @@ function setWidth(arg) {
 
 ---
 
-# React Components are Functions
+export default HorizontalSplit;
 
----
+## React Components are Functions
 
-export default Split;
+<Appear>
+  <div style={{marginRight: '20px'}}>
+
+### Before
 
 ```jsx
 function Dimension(props) {
@@ -184,8 +206,10 @@ function Dimension(props) {
 }
 ```
 
-<Appear>
+  </div>
   <div>
+
+### After
 
 ```jsx
 function Parent(props) {
@@ -203,11 +227,14 @@ function Parent(props) {
 
 ---
 
+export default VerticalSplit;
+
 # Replace Error Code with Exception
 
----
+<Appear>
+  <div>
 
-export default Split;
+### Before
 
 ```jsx
 function withdraw(amount) {
@@ -221,8 +248,10 @@ function withdraw(amount) {
 }
 ```
 
-<Appear>
+  </div>
   <div>
+
+### After
 
 ```jsx
 withdraw(amount) {
@@ -240,11 +269,14 @@ withdraw(amount) {
 
 ---
 
+export default VerticalSplit;
+
 # Replace Exception with Test
 
----
+<Appear>
+  <div>
 
-export default Split;
+### Before
 
 ```jsx
 function getValueForPeriod(periodNumber) {
@@ -256,8 +288,10 @@ function getValueForPeriod(periodNumber) {
 }
 ```
 
-<Appear>
+  </div>
   <div>
+
+### After
 
 ```jsx
 function getValueForPeriod(periodNumber) {
@@ -279,3 +313,9 @@ export default Invert;
 
 # Thanks for coming!
 
+* Decomposing Conditionals
+* Replace Nested Conditional with Guard Clauses
+* Parameterize Method
+* Replace Parameter with Explicit Methods
+* Replace Error Code with Exception
+* Replace Exception with Test
