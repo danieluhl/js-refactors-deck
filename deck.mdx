@@ -1,8 +1,16 @@
 
 import { Appear, Notes } from 'mdx-deck';
-import { Invert, Split, FullScreenCode, Horizontal } from 'mdx-deck/layouts'
-import {VerticalSplit, HorizontalSplit} from './CustomLayouts'
-export { code as theme } from 'mdx-deck/themes'
+import { Invert, Split, FullScreenCode, Horizontal } from 'mdx-deck/layouts';
+import {VerticalSplit, HorizontalSplit} from './CustomLayouts';
+import Highlight from 'react-highlight';
+
+export { code as theme } from 'mdx-deck/themes';
+
+<link rel="stylesheet" href="node_modules/highlight.js/styles/vs.css" />
+
+<style dangerouslySetInnerHTML={{__html: `
+      code { text-align: left; border-radius: 6px; }
+    `}} />
 
 # Some Number of Refactors for Good JS
 
@@ -17,28 +25,33 @@ export default VerticalSplit;
 
 ### Before
 
-```jsx
-if (date.before(SUMMER_START) || date.after(SUMMER_END)) {
+<Highlight className="javascript">
+{
+`if (date.before(SUMMER_START) || date.after(SUMMER_END)) {
   charge = quantity * winterRate + winterServiceCharge;
 }
 else {
   charge = quantity * summerRate;
+}`
 }
-```
+</Highlight>
 
   </div>
   <div>
 
 ### After
 
-```jsx
-if (isSummer(date)) {
+<Highlight className="javascript">
+{
+`if (isSummer(date)) {
   charge = summerCharge(quantity);
 }
 else {
   charge = winterCharge(quantity);
 }
-```
+`
+}
+</Highlight>
 
   </div>
 </Appear>
@@ -56,8 +69,9 @@ export default HorizontalSplit;
 
 ### Before
 
-```jsx
-function getPayAmount() {
+<Highlight className="javascript">
+{
+`function getPayAmount() {
   let result;
   if (isDead){
     result = deadAmount();
@@ -77,15 +91,18 @@ function getPayAmount() {
   }
   return result;
 }
-```
+`
+}
+</Highlight>
 
   </div>
   <div>
 
 ### After
 
-```jsx
-function getPayAmount() {
+<Highlight className="javascript">
+{
+`function getPayAmount() {
   if (isDead){
     return deadAmount();
   }
@@ -97,7 +114,9 @@ function getPayAmount() {
   }
   return normalPayAmount();
 }
-```
+`
+}
+</Highlight>
 
 
   </div>
@@ -116,22 +135,27 @@ export default VerticalSplit;
 
 ### Before
 
-```jsx
-const raiseTenPercent = (base, percent) => {};
-
+<Highlight className="javascript">
+{
+`const raiseTenPercent = (base, percent) => {};
 const base = base || 0;
 const percent = percen || 0;
 raiseTenPercent(base, percent)
-```
+`
+}
+</Highlight>
 
   </div>
   <div>
 
 ### After
 
-```jsx
-const raiseTenPercent = (base = 0, percent = 0) => {}
-```
+<Highlight className="javascript">
+{
+`const raiseTenPercent = (base = 0, percent = 0) => {}
+`
+}
+</Highlight>
 
   </div>
 </Appear>
@@ -149,23 +173,29 @@ export default VerticalSplit;
 
 ### Before
 
-```jsx
-const calculateMortgage =
+<Highlight className="javascript">
+{
+`const calculateMortgage =
   (value, down, loan, interest, term = 0, tax, PMI) => {}
 calculateMortgage(value, down, loan, interest, tax, PMI)
-```
+`
+}
+</Highlight>
 
   </div>
   <div>
 
 ### After
 
-```jsx
-const calculateMortgage =
+<Highlight className="javascript">
+{
+`const calculateMortgage =
   ({value, down, loan, interest, term = 0, tax, PMI}) => {}
 // no change to data structure
 calculateMortgage({value, down, loan, interest, tax, PMI})
-```
+`
+}
+</Highlight>
 
   </div>
 </Appear>
@@ -183,8 +213,9 @@ export default HorizontalSplit;
 
 ### Before
 
-```jsx
-function withdraw(amount) {
+<Highlight className="javascript">
+{
+`function withdraw(amount) {
   if (amount > _balance) {
     return -1;
   }
@@ -193,21 +224,26 @@ function withdraw(amount) {
     return 0;
   }
 }
-```
+`
+}
+</Highlight>
 
   </div>
   <div>
 
 ### After
 
-```jsx
-withdraw(amount) {
+<Highlight className="javascript">
+{
+`withdraw(amount) {
   if (amount > _balance) {
     throw new Error();
   }
   balance -= amount;
 }
-```
+`
+}
+</Highlight>
 
   </div>
 </Appear>
@@ -225,29 +261,35 @@ export default HorizontalSplit;
 
 ### Before
 
-```jsx
-function getValueForPeriod(periodNumber) {
+<Highlight className="javascript">
+{
+`function getValueForPeriod(periodNumber) {
   try {
     return values[periodNumber];
   } catch (e) {
     return 0;
   }
 }
-```
+`
+}
+</Highlight>
 
   </div>
   <div>
 
 ### After
 
-```jsx
-function getValueForPeriod(periodNumber) {
+<Highlight className="javascript">
+{
+`function getValueForPeriod(periodNumber) {
   if (periodNumber >= values.length) {
     return 0;
   }
   return values[periodNumber];
 }
-```
+`
+}
+</Highlight>
 
   </div>
 </Appear>
